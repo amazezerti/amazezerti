@@ -6,7 +6,7 @@
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abdramane-m-a0a047316/)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:amazezerti0103@gmail.com)
-[![Open to Relocate](https://img.shields.io/badge/Open%20to-Relocation%20%26%20Visa%20Sponsorship-2ea44f?style=for-the-badge)](#)
+[![Open to Relocate](https://img.shields.io/badge/Open%20to-Relocation%20%26%20Visa%20Sponsorship-2ea44f?style=for-the-badge)](https://www.linkedin.com/in/abdramane-m-a0a047316/)
 
 </div>
 
