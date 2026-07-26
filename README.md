@@ -24,7 +24,7 @@ Currently seeking international opportunities as a **Junior Software Developer**
 
 ## What Makes Me Different
 
-I enjoy building software for real organizations. Most of my projects focus on solving business problems through information systems — inventory management, digital transformation, workflow automation, and enterprise applications — for companies that actually use what I build, day to day.
+I enjoy building software for real organizations. My projects span retail (a multi-branch inventory ERP), healthcare (a hospital lab management system), national government (an exam board's candidate-to-certificate pipeline), and commerce (an e-commerce platform) — each one solving an actual operational problem for an organization that runs on it, not a toy exercise.
 
 I design business workflows before I write code, because understanding how an organization actually operates is just as important as implementing the software for it.
 
@@ -32,16 +32,16 @@ I design business workflows before I write code, because understanding how an or
 
 ## Technical Skills
 
-<img src="https://skillicons.dev/icons?i=python,django,flask,java,spring,hibernate,maven,dart,flutter,firebase,postgres,sqlite,js,html,css,react,bootstrap,git,github,docker,linux,windows,vscode,nginx,redis" />
+<img src="https://skillicons.dev/icons?i=python,django,flask,java,spring,hibernate,maven,dart,flutter,firebase,ts,nodejs,express,postgres,sqlite,supabase,js,html,css,react,bootstrap,git,github,githubactions,docker,linux,windows,vscode,nginx,redis,prometheus,grafana,vercel&perline=12" />
 
 | Category | Skills |
 |---|---|
-| **Languages** | Python · SQL · Java · Dart · JavaScript · HTML · CSS |
-| **Backend** | Django · Django REST Framework · Flask · Spring Boot · Spring Security · Hibernate / Spring Data JPA · Celery (background/scheduled tasks) |
-| **Frontend & Mobile** | React · Vite · TailwindCSS · Thymeleaf · Bootstrap · Flutter |
-| **Database** | PostgreSQL · SQLite |
-| **Infrastructure & Tools** | Docker · Nginx · Redis · Firebase · Flyway · Maven · Git · GitHub · VS Code · Linux · Windows |
-| **Concepts** | Object-Oriented Programming · Database Design & Migrations · REST API Design · Authentication & Authorization · Role-Based Access Control (RBAC) · System Analysis & Design · Information Systems · Inventory & Warehouse Management · Business Process Automation |
+| **Languages** | Python · SQL · Java · TypeScript · JavaScript · Dart · HTML · CSS |
+| **Backend** | Django · Django REST Framework · Flask · Spring Boot · Spring Security · Hibernate / Spring Data JPA · Node.js · Express · Celery (background/scheduled tasks) |
+| **Frontend & Mobile** | React (incl. TypeScript) · Vite · TailwindCSS · Thymeleaf · Bootstrap · Flutter |
+| **Database & Storage** | PostgreSQL (incl. triggers) · SQLite · Supabase · MinIO / S3-compatible storage · Cloudinary |
+| **Infrastructure & DevOps** | Docker · Docker Compose · Nginx · Redis · GitHub Actions (CI/CD) · Prometheus · Grafana · Vercel · Render · Firebase · Flyway · Maven · Git · GitHub · VS Code · Linux · Windows |
+| **Concepts** | Object-Oriented Programming · Database Design & Migrations · REST API Design · Authentication & Authorization · Role-Based Access Control (RBAC) · Two-Factor Authentication (TOTP) · Encryption at Rest · Automated Testing · CI/CD Pipelines · Observability & Monitoring · System Analysis & Design · Information Systems · Inventory & Warehouse Management · Business Process Automation |
 
 ---
 
@@ -61,6 +61,22 @@ A full-stack enterprise ERP built for a real multi-branch retail/wholesale busin
 
 ---
 
+### 🎓 ONECS — National Baccalauréat Exam Management System (Chad)
+
+[ONECS — Office National des Examens et Concours du Supérieur](https://github.com/amazezerti/onecs_oems) *(repository currently private)*
+
+A large-scale information system digitizing the Republic of Chad's national baccalauréat (BAC) exam administration end to end — candidate registration, region-scoped centre and seat assignment, double-blind grading, jury deliberation, results publication, and tamper-evident certificate issuance with public QR-code verification.
+
+- Modeled **six distinct roles** across the real exam-board hierarchy (Super Admin, National Admin, Academy Delegate, Grading Coordinator, School, Candidate), each scoped to their own academy, centre, or subject at both the API and database layer
+- Built a **double-blind grading and deliberation pipeline** — automatic grade-stub creation when a session enters grading, statistical outlier detection, and a jury decision workflow that can trigger automatic re-certification through the appeals process
+- Engineered **certificate integrity** with HMAC-SHA256 signing and constant-time verification at a public, rate-limited endpoint that returns zero personal data — only pass/mention/serial metadata
+- Enforced a **hard, no-bypass registration deadline** and an **immutable audit log** (a PostgreSQL trigger rejects any UPDATE/DELETE on it), on top of mandatory TOTP 2FA for every high-privilege role and Fernet-encrypted candidate data at rest
+- Shipped a full observability and deployment stack — Prometheus + Grafana, Celery/Redis for bulk uploads and scheduled encrypted backups, MinIO object storage, Nginx, and a GitHub Actions CI pipeline (flake8, black, bandit, pip-audit, pytest)
+- **189 automated tests, 0 failures**, covering both the Django backend and the React/TypeScript frontend
+- **Stack:** React (TypeScript) · Django REST Framework · PostgreSQL · Celery + Redis · MinIO · Docker Compose
+
+---
+
 ### 🏥 Al-Shifa Medical Laboratory Management System (MLMS)
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=amazezerti&repo=mlms_Al_Shifa&theme=default)](https://github.com/amazezerti/mlms_Al_Shifa)
@@ -71,6 +87,20 @@ A role-based clinical laboratory management system built for Al-Shifa Hospital i
 - Implemented **four distinct roles** (Admin, Receptionist, Doctor, Lab Technician), each with its own Spring Security-enforced permissions
 - Used Flyway for versioned database migrations and Hibernate / Spring Data JPA for the persistence layer
 - **Stack:** Java, Spring Boot, Spring Security, PostgreSQL, Hibernate, Flyway, Thymeleaf, Bootstrap, Maven
+
+---
+
+### 🛒 Société Ma-Moussa SARL — E-Commerce Platform
+
+[Société Ma-Moussa SARL — E-Commerce Website](https://github.com/amazezerti/ma-moussa_SARL) *(repository currently private)* · live at [ma-moussa-sarl.vercel.app](https://ma-moussa-sarl.vercel.app)
+
+A full-stack e-commerce website built and deployed for Société Ma-Moussa SARL, a real business in N'Djamena, Chad.
+
+- Built a **hardened admin panel** behind a secret, rate-limited, code-split URL — absent from navigation, source comments, and `robots.txt`, so it never appears in the public JS bundle
+- Implemented **defense-in-depth security**: httpOnly + Secure + SameSite=Strict JWT cookies, bcrypt (12 rounds), Helmet.js headers, strict CORS, tiered rate limiting (a global cap plus a much tighter one on login), input sanitization, and parameterized SQL throughout
+- Uploaded images stream directly to Cloudinary with server-side MIME and size validation — they never touch the server's disk
+- Designed for a clean, environment-driven deploy: PostgreSQL locally, a one-line switch to Supabase in production, zero code changes required
+- **Stack:** React + Vite + TailwindCSS · Node.js + Express · PostgreSQL / Supabase · Cloudinary · Vercel + Render
 
 ---
 
@@ -146,3 +176,4 @@ Open to relocation and visa sponsorship.
 📧 **Email:** [amazezerti0103@gmail.com](mailto:amazezerti0103@gmail.com)
 💼 **LinkedIn:** [linkedin.com/in/abdramane-m-a0a047316](https://www.linkedin.com/in/abdramane-m-a0a047316/)
 🌐 **Portfolio:** coming soon
+
