@@ -14,7 +14,7 @@
 
 ## About Me
 
-I'm an Information Management graduate who builds enterprise software that helps organizations run their day-to-day operations — inventory, warehouses, finance, and business workflows — more effectively.
+I'm an Information Management graduate who builds enterprise software that helps organizations run their day-to-day operations: inventory, warehouses, finance, and business workflows — more effectively.
 
 I enjoy transforming business requirements into scalable software solutions, with a strong focus on system architecture, database design, automation, inventory management, digital transformation, and enterprise workflows. My goal is to build technology that improves how organizations manage information, resources, and decision-making.
 
